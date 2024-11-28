@@ -1,0 +1,29 @@
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ${GOOGLE_CLIENT_ID}
+            client-secret: ${GOOGLE_CLIENT_SECRET}
+          line:
+            client-id: ${LINE_CLIENT_ID}
+            client-secret: ${LINE_CLIENT_SECRET}
+            authorization-grant-type: "authorization_code"
+            redirect-uri: "http://localhost:8080/login/oauth2/code/line"
+            scope: openid, profile
+        provider:
+          line:
+            authorization-uri: "https://access.line.me/oauth2/v2.1/authorize"
+            token-uri: "https://api.line.me/oauth2/v2.1/token"
+            user-info-uri: "https://api.line.me/oauth2/v2.1/userinfo"
+            jwk-set-uri: "https://api.line.me/oauth2/v2.1/certs"
+            issuer-uri: "https://access.line.me"
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://${DATABASE_URL}/noside
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
+logging:
+  level:
+    root: trace

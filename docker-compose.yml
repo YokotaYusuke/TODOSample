@@ -1,0 +1,13 @@
+version: '3.6'
+name: noside
+services:
+  db:
+    image: postgres
+    container_name: noside-postgres
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: noside
+    command: postgres -c log_destination=stderr -c log_statement=all -c log_connections=on -c log_disconnections=on
